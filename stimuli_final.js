@@ -911,14 +911,14 @@ const all_stimuli = [
   {
     "lexicalization": 20,
     "polarity": "base",
-    "sentence": "the landlord discussed the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
+    "sentence": "The landlord discussed the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
     "unique_id": 1205,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 20,
     "polarity": "negated",
-    "sentence": "the landlord didn’t discuss the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
+    "sentence": "The landlord didn’t discuss the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
     "unique_id": 1206,
     "item_type": "negation_test"
   },
@@ -1107,7 +1107,7 @@ const all_stimuli = [
     "item_type": "negation_test"
   },
   {
-    "sentence": "What did Nora bake for the party?",
+    "sentence": "What did Wendy bake for the party?",
     "unique_id": 2001,
     "item_type": "filler_good"
   },
