@@ -1,5 +1,6 @@
 ///Don't touch lines 2-43.
-var order = 1;
+var order = 1; 
+var nt_slider_moved = false;   // track whether NT slider has been moved
 /// Helper function that shuffles an array. Don't touch.
 var shuffle = function (array) {
 
@@ -246,6 +247,38 @@ function make_slides(f) {
     }
   });
 
+  // initialize NT sliders (pre & post)
+  $("#nt_slider").slider({
+    value: 50,
+    min: 0,
+    max: 100,
+    step: 1,
+    slide: function(event, ui) {
+      nt_slider_moved = true;
+    }
+  });
+
+  $("#nt_slider_post").slider({
+    value: 50,
+    min: 0,
+    max: 100,
+    step: 1,
+    slide: function(event, ui) {
+      nt_slider_moved = true;
+    }
+  });
+
+  // NT practice slider
+  $("#nt_prac_slider").slider({
+    value: 50,
+    min: 0,
+    max: 100,
+    step: 1,
+    slide: function(event, ui) {
+      nt_slider_moved = true;
+    }
+  });
+
   slides.single_trial = slide({
     name: "single_trial",
     start: function() {
@@ -329,7 +362,6 @@ function make_slides(f) {
   });
 
 
-
   slides.practice_slider_bad = slide({
     name : "practice_slider_bad",
 
@@ -350,6 +382,7 @@ function make_slides(f) {
       exp.first_response_value = null;
       exp.attempts = 0;
     },
+
     button : function() {
       if (exp.sliderPost == null) {
         $(".err").show();
@@ -393,10 +426,10 @@ function make_slides(f) {
     }
   });
 
-    slides.negation_practice = slide({
+  slides.negation_practice = slide({
     name: "negation_practice",
 
-    // only one practice item
+    // Only one practice item
     present: [
       {
         sentence: "John didn’t buy anything at the festival yesterday.",
@@ -406,32 +439,60 @@ function make_slides(f) {
 
     present_handle: function(stim) {
       $(".err").hide();
-      this.stim = stim;
+      this.stim  = stim;
+      this.phase = "read";  // first click: from read page to slider page
 
-      $(".nt_sentence").html(stim.sentence);
-      $(".nt_question").html(stim.question);
+      // Show instruction + sentence on the first page, hide question block
+      $(".neg_instruction").show();
+      $("#neg_prac_sentence").html("<b>" + stim.sentence + "</b>");
+      $("#neg_prac_q_block").hide();
+      $("#neg_prac_question").html("<b>" + stim.question + "</b>");
 
-      $('input[name="nt_practice_response"]').prop('checked', false);
+      // Reset slider state
+      $("#nt_prac_slider").slider("value", 50);
+      nt_slider_moved = false;
     },
 
-    // only familiarize the participants with choosing an answer, no judgement on right or wrong.
     button: function() {
-      const resp = $('input[name="nt_practice_response"]:checked').val();
 
-      if (!resp) {
-        $(".err").show();
-      } else {
-        exp.data_trials.push({
-          trial_type: "negation_practice",
-          sentence: this.stim.sentence,
-          question: this.stim.question,
-          response: resp
-        });
+      // -------- First click: go from sentence page to question + slider page --------
+      if (this.phase === "read") {
+        this.phase = "slider";
 
-        _stream.apply(this);  // go to the next slide
+        // Hide instruction and sentence, show only question + slider
+        $(".neg_instruction").hide();
+        $("#neg_prac_sentence").text("");
+        $("#neg_prac_q_block").show();
+
+        // Reset slider and error state once again
+        $("#nt_prac_slider").slider("value", 50);
+        nt_slider_moved = false;
+        $(".err").hide();
+
+        return;  // stay on this slide, now in the slider phase
       }
+
+      // -------- Second click: slider page, submit response --------
+      if (!nt_slider_moved) {
+        $(".err").show();
+        return;
+      }
+
+      const val = $("#nt_prac_slider").slider("value");
+
+      exp.data_trials.push({
+        trial_type: "negation_practice",
+        sentence  : this.stim.sentence,
+        question  : this.stim.question,
+        response  : val
+      });
+
+      console.log("[DATA] NT_PRACTICE", exp.data_trials[exp.data_trials.length - 1]);
+
+      _stream.apply(this);  // go to the next slide (e.g., last_reminder)
     }
   });
+
 
 
   slides.last_reminder = slide({
@@ -439,147 +500,303 @@ function make_slides(f) {
     button : function() {
       exp.go(); //use exp.go() if and only if there is no "present" data.
     }
-    
+      
   });
 
- slides.negation_test_pre = slide({
-  name: "negation_test_pre",
-  present: nt_pre_final,
-  present_handle: function(stim){
-    $(".err").hide();
-    this.stim = stim;
 
-   const txt = String(stim.sentence).trim();
-    const dotIdx = txt.lastIndexOf(".");
-    let statement = txt, question = "";
-    if (dotIdx >= 0 && dotIdx < txt.length - 1) {
-    statement = txt.slice(0, dotIdx + 1).trim();   // take everything up to and including the period
-    question  = txt.slice(dotIdx + 1).trim();      // take the text after the period
-     }
+  slides.one_slider = slide({
+    name : "one_slider",
+    present : main_order,
+    present_handle : function(stim) {
+      $(".err").hide();
+      this.stim = stim;
+      $(".target").html(stim.sentence);
+      this.init_sliders();
+      exp.sliderPost = null;
 
-    $("#negation_test_pre #negation_sentence").text(statement);
-    $("#negation_test_pre #negation_question").text(question);
-    $('input[name="nt_response"]').prop('checked', false);
+      update_progress();
+    },
+    button : function() {
+      if (exp.sliderPost == null) {
+        $(".err").show();
+      } else {
+        this.log_responses();
+        exp.trial_index++;
+        _stream.apply(this);
+      }
+    },
+    init_sliders : function() {
+      utils.make_slider("#single_slider", function(event, ui) {
+        exp.sliderPost = ui.value;
+      });
+    },
+    log_responses : function() {
+      exp.data_trials.push({
+        trial_type       : "acceptability",
+        order            : order++,                     
+        response         : exp.sliderPost,
+        lexicalization   : this.stim.lexicalization || null,
+        sentence         : this.stim.sentence,
+        structure        : this.stim.structure || null,
+        dependency_length: this.stim.dependency_length || null,
+        item_type        : this.stim.item_type,
+        sentence_id      : this.stim.unique_id
+      });
 
-    // update bar based on how many trials have been completed so far
-    update_progress();
-  },
-  button: function(){
-    const resp = $('input[name="nt_response"]:checked').val();
-    if (!resp){ $(".err").show(); return; }
-
-    //check for filler type
-    const isFiller = (this.stim.item_type === "filler_negation_test");
-
-    exp.data_trials.push({
-      trial_type : "negation_pre",
-      order      : order++,                    // log order
-      is_filler  : isFiller ? 1 : 0,           // 1 = filler, 0 = critical
-      response   : resp,                       // "Yes" / "No" / "Unsure"
-      polarity   : this.stim.polarity || null, // "base"/"negated"
-      sentence   : this.stim.sentence,
-      sentence_id: this.stim.unique_id,
-    });
-
-    console.log("[DATA] NT_PRE", exp.data_trials[exp.data_trials.length - 1]);
-
-    exp.trial_index++;      // one more trial completed
-    _stream.apply(this);
-  }
-
-});
-
-
-slides.one_slider = slide({
-  name : "one_slider",
-  present : main_order,
-  present_handle : function(stim) {
-    $(".err").hide();
-    this.stim = stim;
-    $(".target").html(stim.sentence);
-    this.init_sliders();
-    exp.sliderPost = null;
-
-    update_progress();
-  },
-  button : function() {
-    if (exp.sliderPost == null) {
-      $(".err").show();
-    } else {
-      this.log_responses();
-      exp.trial_index++;
-      _stream.apply(this);
+      console.log("[DATA] MAIN", exp.data_trials[exp.data_trials.length - 1]);
     }
-  },
-  init_sliders : function() {
-    utils.make_slider("#single_slider", function(event, ui) {
-      exp.sliderPost = ui.value;
-    });
-  },
-  log_responses : function() {
-    exp.data_trials.push({
-      trial_type       : "acceptability",
-      order            : order++,                     
-      response         : exp.sliderPost,
-      lexicalization   : this.stim.lexicalization || null,
-      sentence         : this.stim.sentence,
-      structure        : this.stim.structure || null,
-      dependency_length: this.stim.dependency_length || null,
-      item_type        : this.stim.item_type,
-      sentence_id      : this.stim.unique_id
-    });
 
-    console.log("[DATA] MAIN", exp.data_trials[exp.data_trials.length - 1]);
+  });
+
+///////////////////////////////
+// Negation helper function //
+//////////////////////////////
+
+function splitNegSentence(stim) {
+  const full = String(stim.sentence).trim();
+
+  // Split on the last "?" to separate statement+question and anything after
+  const qIdx = full.lastIndexOf("?");
+  const beforeQ = qIdx >= 0 ? full.slice(0, qIdx + 1).trim() : full;
+
+  // Find the first period to cut statement vs. question
+  const dotIdx = beforeQ.indexOf(".");
+  let sentence = beforeQ;
+  let question = "";
+
+  if (dotIdx >= 0 && dotIdx < beforeQ.length - 1) {
+    sentence = beforeQ.slice(0, dotIdx + 1).trim();   // first sentence with period
+    question = beforeQ.slice(dotIdx + 1).trim();      // remaining text as question
   }
 
+  return { sentence, question };
+}
+
+slides.negation_test_pre = slide({
+  name: "negation_test_pre",
+  present: nt_pre_final,      // 12 NT items
+
+  present_handle: function(stim) {
+    console.log("Beginning negation_test_pre item", stim.unique_id);
+    $(".err").hide();
+
+    exp.current_phase = "pre";
+    this.stim  = stim;
+    this.phase = "read";   // first click: read -> slider
+
+    const parts = splitNegSentence(stim);
+
+    // 1st page: show instruction + sentence only
+    $(".neg_instruction").show();
+    $("#neg_pre_sentence").html("<b>" + parts.sentence + "</b>");
+    $("#neg_pre_q_block").hide();
+    $("#neg_pre_question").text("");   // clear question on read page
+
+    // reset slider state
+    $("#nt_slider").slider("value", 50);
+    nt_slider_moved = false;
+
+    // update progress for the read page
+    exp.trial_index++;
+    if (typeof update_progress === "function") {
+      update_progress();
+    }
+
+    console.log("[PAGE] NT_PRE read", {
+      id: stim.unique_id,
+      sentence: parts.sentence
+    });
+  },
+
+  button: function() {
+
+    // ---------- First click: from READ → SLIDER ----------
+    if (this.phase === "read") {
+      const isFiller = (this.stim.item_type === "filler_negation_test");
+      const parts    = splitNegSentence(this.stim);
+
+      // log the read page
+      const trial_read = {
+        trial_type : "negation_pre_read",
+        order      : order++,
+        is_filler  : isFiller ? 1 : 0,
+        polarity   : this.stim.polarity || null,
+        response   : null,
+        sentence   : parts.sentence,
+        sentence_id: this.stim.unique_id
+      };
+
+      exp.data_trials.push(trial_read);
+      console.log("[DATA] NT_PRE_READ", trial_read);
+
+      // go to slider page: hide instruction, hide sentence, show question + slider
+      this.phase = "slider";
+
+      $(".neg_instruction").hide();
+      $("#neg_pre_sentence").text("");
+      $("#neg_pre_question").html("<b>" + parts.question + "</b>");
+      $("#neg_pre_q_block").show();
+
+      // reset slider & state for this page
+      $("#nt_slider").slider("value", 50);
+      nt_slider_moved = false;
+      $(".err").hide();
+
+      // progress for slider page
+      exp.trial_index++;
+      if (typeof update_progress === "function") {
+        update_progress();
+      }
+
+      console.log("[PAGE] NT_PRE slider", {
+        id: this.stim.unique_id,
+        question: parts.question
+      });
+
+      return;  // stay in this slide, now waiting for slider response
+    }
+
+    // ---------- Second click: SLIDER phase ----------
+    if (!nt_slider_moved) {
+      $(".err").show();
+      return;
+    }
+
+    const val = $("#nt_slider").slider("value");
+    const isFiller = (this.stim.item_type === "filler_negation_test");
+    const parts2   = splitNegSentence(this.stim);
+
+    const trial_obj = {
+      trial_type : "negation_pre",
+      order      : order++,
+      is_filler  : isFiller ? 1 : 0,
+      polarity   : this.stim.polarity || null,
+      response   : val,
+      sentence   : parts2.sentence,
+      question   : parts2.question,
+      sentence_id: this.stim.unique_id
+    };
+
+    exp.data_trials.push(trial_obj);
+    console.log("[DATA] NT_PRE", trial_obj);
+
+    _stream.apply(this);  // go to the next stimulus
+  }
 });
 
 
 slides.negation_test_post = slide({
   name: "negation_test_post",
-  present: nt_post_final,
-  present_handle: function(stim){
-    $(".err").hide();
-    this.stim = stim;
+  present: nt_post_final,      // 12 NT items (4 critical + 8 fillers)
 
-    const txt = String(stim.sentence).trim();
-    const dotIdx = txt.lastIndexOf(".");
-    let statement = txt, question = "";
-    if (dotIdx >= 0 && dotIdx < txt.length - 1) {
-    statement = txt.slice(0, dotIdx + 1).trim();   // take everything up to and including the period
-    question  = txt.slice(dotIdx + 1).trim();      // take the text after the period
+  present_handle: function(stim) {
+    console.log("Beginning negation_test_post item", stim.unique_id);
+    $(".err").hide();
+
+    exp.current_phase = "post";
+    this.stim  = stim;
+    this.phase = "read";   // first click: read -> slider
+
+    const parts = splitNegSentence(stim);
+
+    // Page 1: show instruction + statement only
+    $(".neg_instruction").show();
+    $("#neg_post_sentence").html("<b>" + parts.sentence + "</b>");
+    $("#neg_post_q_block").hide();
+    $("#neg_post_question").text("");   // clear question on read page
+
+    // Reset slider state
+    $("#nt_slider_post").slider("value", 50);
+    nt_slider_moved = false;
+
+    // Update progress for the read page
+    exp.trial_index++;
+    if (typeof update_progress === "function") {
+      update_progress();
     }
 
-    $("#negation_test_post #negation_sentence").text(statement);
-    $("#negation_test_post #negation_question").text(question);
-    $('input[name="nt_response"]').prop('checked', false);
-
-    update_progress();
-  },
-  button: function(){
-    const resp = $('input[name="nt_response"]:checked').val();
-    if (!resp){ $(".err").show(); return; }
-
-    const isFiller = (this.stim.item_type === "filler_negation_test");
-
-    exp.data_trials.push({
-      trial_type : "negation_post",
-      order      : order++,                     
-      is_filler  : isFiller ? 1 : 0,            // 1 = filler, 0 = critical
-      response   : resp,
-      polarity   : this.stim.polarity || null,
-      sentence   : this.stim.sentence,
-      sentence_id: this.stim.unique_id,
+    console.log("[PAGE] NT_POST read", {
+      id: stim.unique_id,
+      sentence: parts.sentence
     });
+  },
 
-    console.log("[DATA] NT_POST", exp.data_trials[exp.data_trials.length - 1]);
+  button: function() {
 
-    exp.trial_index++;
-    _stream.apply(this);
+    // ---------- First click: from READ → SLIDER ----------
+    if (this.phase === "read") {
+      const isFiller = (this.stim.item_type === "filler_negation_test");
+      const parts    = splitNegSentence(this.stim);
+
+      // Log the read page
+      const trial_read = {
+        trial_type : "negation_post_read",
+        order      : order++,
+        is_filler  : isFiller ? 1 : 0,
+        polarity   : this.stim.polarity || null,
+        response   : null,                 // no response on read page
+        sentence   : parts.sentence,
+        sentence_id: this.stim.unique_id
+      };
+
+      exp.data_trials.push(trial_read);
+      console.log("[DATA] NT_POST_READ", trial_read);
+
+      // Switch to slider page: hide instruction and sentence, show question + slider
+      this.phase = "slider";
+
+      $(".neg_instruction").hide();
+      $("#neg_post_sentence").text("");
+      $("#neg_post_question").html("<b>" + parts.question + "</b>");
+      $("#neg_post_q_block").show();
+
+      // Reset slider and state for this page
+      $("#nt_slider_post").slider("value", 50);
+      nt_slider_moved = false;
+      $(".err").hide();
+
+      // Update progress for the slider page
+      exp.trial_index++;
+      if (typeof update_progress === "function") {
+        update_progress();
+      }
+
+      console.log("[PAGE] NT_POST slider", {
+        id: this.stim.unique_id,
+        question: parts.question
+      });
+
+      return;  // stay on this slide, now in slider phase
+    }
+
+    // ---------- Second click: SLIDER phase ----------
+    if (!nt_slider_moved) {
+      $(".err").show();
+      return;
+    }
+
+    const val      = $("#nt_slider_post").slider("value");
+    const isFiller = (this.stim.item_type === "filler_negation_test");
+    const parts2   = splitNegSentence(this.stim);
+
+    const trial_obj = {
+      trial_type : "negation_post",
+      order      : order++,
+      is_filler  : isFiller ? 1 : 0,
+      polarity   : this.stim.polarity || null,
+      response   : val,
+      sentence   : parts2.sentence,
+      question   : parts2.question,
+      sentence_id: this.stim.unique_id
+    };
+
+    exp.data_trials.push(trial_obj);
+    console.log("[DATA] NT_POST", trial_obj);
+
+    _stream.apply(this);  // go to the next stimulus
   }
-
 });
-
+  
 
   slides.subj_info =  slide({
     name : "subj_info",
@@ -614,7 +831,7 @@ slides.negation_test_post = slide({
   return slides;
 }
 
-// progress //
+// progress bar //
 function update_progress() {
   if (!exp.total_trials) return;
   var pct = (exp.trial_index / exp.total_trials) * 100;
@@ -638,7 +855,11 @@ function init() {
   
   // total trials that use the progress bar:
   // pre-negation + acceptability + post-negation
-  exp.total_trials = nt_pre_final.length + main_order.length + nt_post_final.length; // 12+48+12=72
+  exp.total_trials = 
+    2 * nt_pre_final.length +    // 2 pages pre NT item 
+    main_order.length +          // 1 page per acceptability item
+    2 * nt_post_final.length;    // 2 pages post NT item 
+
   exp.trial_index = 0; // number of COMPLETED trials so far
   
   //blocks of the experiment:
