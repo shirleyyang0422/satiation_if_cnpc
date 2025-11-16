@@ -543,14 +543,14 @@ const all_stimuli = [
   {
     "lexicalization": 12,
     "polarity": "base",
-    "sentence": "the manager discussed the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
+    "sentence": "The manager discussed the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
     "unique_id": 1125,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 12,
     "polarity": "negated",
-    "sentence": "the manager didn’t discuss the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
+    "sentence": "The manager didn’t discuss the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
     "unique_id": 1126,
     "item_type": "negation_test"
   },
