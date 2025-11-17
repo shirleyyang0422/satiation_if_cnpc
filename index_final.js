@@ -178,17 +178,18 @@ function takeDistinctByKey(pool, count, usedKeys){
 }
 
 // pre: 4 base + 4 negated
-const usedPairKeys = new Set();
-const NT_FILL_PRE_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_ALL, 4, usedPairKeys);
-const NT_FILL_PRE_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_ALL , 4, usedPairKeys);
+const usedPairKeysPre = new Set();
+const NT_FILL_PRE_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_ALL, 4, usedPairKeysPre);
+const NT_FILL_PRE_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_ALL , 4, usedPairKeysPre);
 const NT_FILL_PRE      = NT_FILL_PRE_BASE.concat(NT_FILL_PRE_NEG);
 
 // post: 4 base + 4 negated
 const NT_FILL_BASE_POOL_POST = NT_FILL_BASE_POOL_ALL.filter(x => !NT_FILL_PRE_BASE.includes(x));
 const NT_FILL_NEG_POOL_POST  = NT_FILL_NEG_POOL_ALL .filter(x => !NT_FILL_PRE_NEG .includes(x));
 
-const NT_FILL_POST_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_POST, 4, usedPairKeys);
-const NT_FILL_POST_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_POST , 4, usedPairKeys);
+const usedPairKeysPost = new Set();
+const NT_FILL_POST_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_POST, 4, usedPairKeysPost);
+const NT_FILL_POST_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_POST , 4, usedPairKeysPost);
 const NT_FILL_POST      = NT_FILL_POST_BASE.concat(NT_FILL_POST_NEG);
 
 
