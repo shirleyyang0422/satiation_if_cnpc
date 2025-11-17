@@ -279,7 +279,7 @@ function make_slides(f) {
       $(".err").hide();
       $(".errgood").hide();
       this.stim = stim;
-      $(".prompt").html("Who did the cheif cook dinner for?");
+      $(".prompt").html("Who did the chef cook dinner for?");
       this.init_sliders();
       exp.sliderPost = null; //erase current slider value
       exp.first_response_wrong = 0;
@@ -343,7 +343,7 @@ function make_slides(f) {
     present_handle : function(stim) {
       $(".err").hide();
       $(".errbad").hide();
-      $(".prompt").html("Who the chief for cook dinner did?");
+      $(".prompt").html("Who the chef for cook dinner did?");
       this.init_sliders();
       exp.sliderPost = null; //erase current slider value
       exp.first_response_wrong = 0;
