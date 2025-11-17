@@ -769,8 +769,8 @@ slides.negation_test_post = slide({
     _stream.apply(this);  // go to the next stimulus
   }
     ,
-  init_sliders_pre: function() {
-    utils.make_slider("#nt_slider", function(event, ui) {
+  init_sliders_post: function() {
+    utils.make_slider("#nt_slider_post", function(event, ui) {
       exp.sliderPost = ui.value;
     });
   }
