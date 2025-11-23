@@ -37,14 +37,14 @@ const all_stimuli = [
   {
     "lexicalization": 1,
     "polarity": "base",
-    "sentence": "John discussed the claim that the bakery shop would serve donuts tomorrow. Would the bakery shop serve donuts tomorrow?",
+    "sentence": "John discussed the claim that the bakery shop would serve donuts tomorrow. Was there a claim that the bakery shop would serve donuts tomorrow?",
     "unique_id": 1015,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 1,
     "polarity": "negated",
-    "sentence": "John didn’t discuss the claim that the bakery shop would serve donuts tomorrow. Would the bakery shop serve donuts tomorrow?",
+    "sentence": "John didn’t discuss the claim that the bakery shop would serve donuts tomorrow. Was there a claim that the bakery shop would serve donuts tomorrow?",
     "unique_id": 1016,
     "item_type": "negation_test"
   },
@@ -83,14 +83,14 @@ const all_stimuli = [
   {
     "lexicalization": 2,
     "polarity": "base",
-    "sentence": "Katie discussed the claim that the cat knocked over the vase. Did the cat knocked over the vase?",
+    "sentence": "Katie discussed the claim that the cat knocked over the vase. Was there a claim that the cat knocked over the vase?",
     "unique_id": 1025,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 2,
     "polarity": "negated",
-    "sentence": "Katie didn’t discuss the claim that the cat knocked over the vase. Did the cat knocked over the vase?",
+    "sentence": "Katie didn’t discuss the claim that the cat knocked over the vase. Was there a claim that the cat knocked over the vase?",
     "unique_id": 1026,
     "item_type": "negation_test"
   },
@@ -129,14 +129,14 @@ const all_stimuli = [
   {
     "lexicalization": 3,
     "polarity": "base",
-    "sentence": "David discussed the claim that the airline canceled the morning flight to Chicago. Did the airline canceled the morning flight to Chicago?",
+    "sentence": "David discussed the claim that the airline canceled the morning flight to Chicago. Was there a claim that the airline canceled the morning flight to Chicago?",
     "unique_id": 1035,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 3,
     "polarity": "negated",
-    "sentence": "David didn’t discuss the claim that the airline canceled the morning flight to Chicago. Did the airline canceled the morning flight to Chicago?",
+    "sentence": "David didn’t discuss the claim that the airline canceled the morning flight to Chicago. Was there a claim that the airline canceled the morning flight to Chicago?",
     "unique_id": 1036,
     "item_type": "negation_test"
   },
@@ -175,14 +175,14 @@ const all_stimuli = [
   {
     "lexicalization": 4,
     "polarity": "base",
-    "sentence": "Michael discussed the claim that the mechanic fixed the car after the accident. Did the mechanic fixed the car after the accident?",
+    "sentence": "Michael discussed the claim that the mechanic fixed the car after the accident. Was there a claim that the mechanic fixed the car after the accident?",
     "unique_id": 1045,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 4,
     "polarity": "negated",
-    "sentence": "Michael didn’t discuss the claim that the mechanic fixed the car after the accident. Did the mechanic fixed the car after the accident?",
+    "sentence": "Michael didn’t discuss the claim that the mechanic fixed the car after the accident. Was there a claim that the mechanic fixed the car after the accident?",
     "unique_id": 1046,
     "item_type": "negation_test"
   },
@@ -221,14 +221,14 @@ const all_stimuli = [
   {
     "lexicalization": 5,
     "polarity": "base",
-    "sentence": "Emma discussed the claim that the neighbor played loud music after midnight. Did the neighbor played loud music after midnight?",
+    "sentence": "Emma discussed the claim that the neighbor played loud music after midnight. Was there a claim that the neighbor played loud music after midnight?",
     "unique_id": 1055,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 5,
     "polarity": "negated",
-    "sentence": "Emma didn’t discuss the claim that the neighbor played loud music after midnight. Did the neighbor played loud music after midnight?",
+    "sentence": "Emma didn’t discuss the claim that the neighbor played loud music after midnight. Was there a claim that the neighbor played loud music after midnight?",
     "unique_id": 1056,
     "item_type": "negation_test"
   },
@@ -267,14 +267,14 @@ const all_stimuli = [
   {
     "lexicalization": 6,
     "polarity": "base",
-    "sentence": "Julia discussed the claim that the babysitter forgot to pick up the children after school. Did the babysitter forgot to pick up the children after school?",
+    "sentence": "Julia discussed the claim that the babysitter forgot to pick up the children after school. Was there a claim that the babysitter forgot to pick up the children after school?",
     "unique_id": 1065,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 6,
     "polarity": "negated",
-    "sentence": "Julia didn’t discuss the claim that the babysitter forgot to pick up the children after school. Did the babysitter forgot to pick up the children after school?",
+    "sentence": "Julia didn’t discuss the claim that the babysitter forgot to pick up the children after school. Was there a claim that the babysitter forgot to pick up the children after school?",
     "unique_id": 1066,
     "item_type": "negation_test"
   },
@@ -313,14 +313,14 @@ const all_stimuli = [
   {
     "lexicalization": 7,
     "polarity": "base",
-    "sentence": "Nora discussed the claim that the scientist discovered an error in the final experiment. Did the scientist discovered an error in the final experiment?",
+    "sentence": "Nora discussed the claim that the scientist discovered an error in the final experiment. Was there a claim that the scientist discovered an error in the final experiment?",
     "unique_id": 1075,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 7,
     "polarity": "negated",
-    "sentence": "Nora didn’t discuss the claim that the scientist discovered an error in the final experiment. Did the scientist discovered an error in the final experiment?",
+    "sentence": "Nora didn’t discuss the claim that the scientist discovered an error in the final experiment. Was there a claim that the scientist discovered an error in the final experiment?",
     "unique_id": 1076,
     "item_type": "negation_test"
   },
@@ -359,14 +359,14 @@ const all_stimuli = [
   {
     "lexicalization": 8,
     "polarity": "base",
-    "sentence": "Liam discussed the claim that the bus driver skipped several stops during the morning route. Did the bus driver skipped several stops during the morning route?",
+    "sentence": "Liam discussed the claim that the bus driver skipped several stops during the morning route. Was there a claim that the bus driver skipped several stops during the morning route?",
     "unique_id": 1085,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 8,
     "polarity": "negated",
-    "sentence": "Liam didn’t discuss the claim that the bus driver skipped several stops during the morning route. Did the bus driver skipped several stops during the morning route?",
+    "sentence": "Liam didn’t discuss the claim that the bus driver skipped several stops during the morning route. Was there a claim that the bus driver skipped several stops during the morning route?",
     "unique_id": 1086,
     "item_type": "negation_test"
   },
@@ -405,14 +405,14 @@ const all_stimuli = [
   {
     "lexicalization": 9,
     "polarity": "base",
-    "sentence": "Grace discussed the claim that the nurse gave the wrong medication to a patient. Did the nurse gave the wrong medication to a patient?",
+    "sentence": "Grace discussed the claim that the nurse gave the wrong medication to a patient. Was there a claim that the nurse gave the wrong medication to a patient?",
     "unique_id": 1095,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 9,
     "polarity": "negated",
-    "sentence": "Grace didn’t discuss the claim that the nurse gave the wrong medication to a patient. Did the nurse gave the wrong medication to a patient?",
+    "sentence": "Grace didn’t discuss the claim that the nurse gave the wrong medication to a patient. Was there a claim that the nurse gave the wrong medication to a patient?",
     "unique_id": 1096,
     "item_type": "negation_test"
   },
@@ -451,14 +451,14 @@ const all_stimuli = [
   {
     "lexicalization": 10,
     "polarity": "base",
-    "sentence": "The curator discussed the claim that the museum restored the painting. Did the museum restored the painting?",
+    "sentence": "The curator discussed the claim that the museum restored the painting. Was there a claim that the museum restored the painting?",
     "unique_id": 1105,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 10,
     "polarity": "negated",
-    "sentence": "The curator didn’t discuss the claim that the museum restored the painting. Did the museum restored the painting?",
+    "sentence": "The curator didn’t discuss the claim that the museum restored the painting. Was there a claim that the museum restored the painting?",
     "unique_id": 1106,
     "item_type": "negation_test"
   },
@@ -497,14 +497,14 @@ const all_stimuli = [
   {
     "lexicalization": 11,
     "polarity": "base",
-    "sentence": "Amy discussed the claim that the gardener planted flowers near the fence. Did the gardener planted flowers near the fence?",
+    "sentence": "Amy discussed the claim that the gardener planted flowers near the fence. Was there a claim that the gardener planted flowers near the fence?",
     "unique_id": 1115,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 11,
     "polarity": "negated",
-    "sentence": "Amy didn’t discuss the claim that the gardener planted flowers near the fence. Did the gardener planted flowers near the fence?",
+    "sentence": "Amy didn’t discuss the claim that the gardener planted flowers near the fence. Was there a claim that the gardener planted flowers near the fence?",
     "unique_id": 1116,
     "item_type": "negation_test"
   },
@@ -543,14 +543,14 @@ const all_stimuli = [
   {
     "lexicalization": 12,
     "polarity": "base",
-    "sentence": "The manager discussed the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
+    "sentence": "The manager discussed the claim that the café overcharged the customer for coffee. Was there a claim that the café overcharged the customer for coffee?",
     "unique_id": 1125,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 12,
     "polarity": "negated",
-    "sentence": "The manager didn’t discuss the claim that the café overcharged the customer for coffee. Did the café overcharged the customer for coffee?",
+    "sentence": "The manager didn’t discuss the claim that the café overcharged the customer for coffee. Was there a claim that the café overcharged the customer for coffee?",
     "unique_id": 1126,
     "item_type": "negation_test"
   },
@@ -589,14 +589,14 @@ const all_stimuli = [
   {
     "lexicalization": 13,
     "polarity": "base",
-    "sentence": "Laura discussed the claim that the reporter misquoted the politician in the article. Did the reporter misquoted the politician in the article?",
+    "sentence": "Laura discussed the claim that the reporter misquoted the politician in the article. Was there a claim that the reporter misquoted the politician in the article?",
     "unique_id": 1135,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 13,
     "polarity": "negated",
-    "sentence": "Laura didn’t discuss the claim that the reporter misquoted the politician in the article. Did the reporter misquoted the politician in the article?",
+    "sentence": "Laura didn’t discuss the claim that the reporter misquoted the politician in the article. Was there a claim that the reporter misquoted the politician in the article?",
     "unique_id": 1136,
     "item_type": "negation_test"
   },
@@ -635,14 +635,14 @@ const all_stimuli = [
   {
     "lexicalization": 14,
     "polarity": "base",
-    "sentence": "Kevin discussed the claim that the chef added too much salt to the soup by mistake. Did the chef added too much salt to the soup by mistake?",
+    "sentence": "Kevin discussed the claim that the chef added too much salt to the soup by mistake. Was there a claim that the chef added too much salt to the soup by mistake?",
     "unique_id": 1145,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 14,
     "polarity": "negated",
-    "sentence": "Kevin didn’t discuss the claim that the chef added too much salt to the soup by mistake. Did the chef added too much salt to the soup by mistake?",
+    "sentence": "Kevin didn’t discuss the claim that the chef added too much salt to the soup by mistake. Was there a claim that the chef added too much salt to the soup by mistake?",
     "unique_id": 1146,
     "item_type": "negation_test"
   },
@@ -681,14 +681,14 @@ const all_stimuli = [
   {
     "lexicalization": 15,
     "polarity": "base",
-    "sentence": "Rachel discussed the claim that the photographer lost the camera during the trip. Did the photographer lost the camera during the trip?",
+    "sentence": "Rachel discussed the claim that the photographer lost the camera during the trip. Was there a claim that the photographer lost the camera during the trip?",
     "unique_id": 1155,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 15,
     "polarity": "negated",
-    "sentence": "Rachel didn’t discuss the claim that the photographer lost the camera during the trip. Did the photographer lost the camera during the trip?",
+    "sentence": "Rachel didn’t discuss the claim that the photographer lost the camera during the trip. Was there a claim that the photographer lost the camera during the trip?",
     "unique_id": 1156,
     "item_type": "negation_test"
   },
@@ -727,14 +727,14 @@ const all_stimuli = [
   {
     "lexicalization": 16,
     "polarity": "base",
-    "sentence": "Thomas discussed the claim that the author deleted a chapter from the final draft. Did the author deleted a chapter from the final draft?",
+    "sentence": "Thomas discussed the claim that the author deleted a chapter from the final draft. Was there a claim that the author deleted a chapter from the final draft?",
     "unique_id": 1165,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 16,
     "polarity": "negated",
-    "sentence": "Thomas didn’t discuss the claim that the author deleted a chapter from the final draft. Did the author deleted a chapter from the final draft?",
+    "sentence": "Thomas didn’t discuss the claim that the author deleted a chapter from the final draft. Was there a claim that the author deleted a chapter from the final draft?",
     "unique_id": 1166,
     "item_type": "negation_test"
   },
@@ -773,14 +773,14 @@ const all_stimuli = [
   {
     "lexicalization": 17,
     "polarity": "base",
-    "sentence": "Olivia discussed the claim that the secretary sent the report to the wrong department. Did the secretary sent the report to the wrong department?",
+    "sentence": "Olivia discussed the claim that the secretary sent the report to the wrong department. Was there a claim that the secretary sent the report to the wrong department?",
     "unique_id": 1175,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 17,
     "polarity": "negated",
-    "sentence": "Olivia didn’t discuss the claim that the secretary sent the report to the wrong department. Did the secretary sent the report to the wrong department?",
+    "sentence": "Olivia didn’t discuss the claim that the secretary sent the report to the wrong department. Was there a claim that the secretary sent the report to the wrong department?",
     "unique_id": 1176,
     "item_type": "negation_test"
   },
@@ -819,14 +819,14 @@ const all_stimuli = [
   {
     "lexicalization": 18,
     "polarity": "base",
-    "sentence": "Ben discussed the claim that the delivery driver dropped the package on the street. Did the delivery driver dropped the package on the street?",
+    "sentence": "Ben discussed the claim that the delivery driver dropped the package on the street. Was there a claim that the delivery driver dropped the package on the street?",
     "unique_id": 1185,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 18,
     "polarity": "negated",
-    "sentence": "Ben didn’t discuss the claim that the delivery driver dropped the package on the street. Did the delivery driver dropped the package on the street?",
+    "sentence": "Ben didn’t discuss the claim that the delivery driver dropped the package on the street. Was there a claim that the delivery driver dropped the package on the street?",
     "unique_id": 1186,
     "item_type": "negation_test"
   },
@@ -865,14 +865,14 @@ const all_stimuli = [
   {
     "lexicalization": 19,
     "polarity": "base",
-    "sentence": "Megan discussed the claim that the company released the new software ahead of schedule. Did the company released the new software ahead of schedule?",
+    "sentence": "Megan discussed the claim that the company released the new software ahead of schedule. Was there a claim that the company released the new software ahead of schedule?",
     "unique_id": 1195,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 19,
     "polarity": "negated",
-    "sentence": "Megan didn’t discuss the claim that the company released the new software ahead of schedule. Did the company released the new software ahead of schedule?",
+    "sentence": "Megan didn’t discuss the claim that the company released the new software ahead of schedule. Was there a claim that the company released the new software ahead of schedule?",
     "unique_id": 1196,
     "item_type": "negation_test"
   },
@@ -911,14 +911,14 @@ const all_stimuli = [
   {
     "lexicalization": 20,
     "polarity": "base",
-    "sentence": "The landlord discussed the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
+    "sentence": "The landlord discussed the claim that the plumber fixed the leak before the inspection. Was there a claim that the plumber fixed the leak before the inspection?",
     "unique_id": 1205,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 20,
     "polarity": "negated",
-    "sentence": "The landlord didn’t discuss the claim that the plumber fixed the leak before the inspection. Did the plumber fixed the leak before the inspection?",
+    "sentence": "The landlord didn’t discuss the claim that the plumber fixed the leak before the inspection. Was there a claim that the plumber fixed the leak before the inspection?",
     "unique_id": 1206,
     "item_type": "negation_test"
   },
@@ -957,14 +957,14 @@ const all_stimuli = [
   {
     "lexicalization": 21,
     "polarity": "base",
-    "sentence": "Chloe discussed the claim that the chef burned the steak during the dinner service. Did the chef burned the steak during the dinner service?",
+    "sentence": "Chloe discussed the claim that the chef burned the steak during the dinner service. Was there a claim that the chef burned the steak during the dinner service?",
     "unique_id": 1215,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 21,
     "polarity": "negated",
-    "sentence": "Chloe didn’t discuss the claim that the chef burned the steak during the dinner service. Did the chef burned the steak during the dinner service?",
+    "sentence": "Chloe didn’t discuss the claim that the chef burned the steak during the dinner service. Was there a claim that the chef burned the steak during the dinner service?",
     "unique_id": 1216,
     "item_type": "negation_test"
   },
@@ -1003,14 +1003,14 @@ const all_stimuli = [
   {
     "lexicalization": 22,
     "polarity": "base",
-    "sentence": "Ethan discussed the claim that the scientist developed a vaccine in the new lab. Did the scientist developed a vaccine in the new lab?",
+    "sentence": "Ethan discussed the claim that the scientist developed a vaccine in the new lab. Was there a claim that the scientist developed a vaccine in the new lab?",
     "unique_id": 1225,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 22,
     "polarity": "negated",
-    "sentence": "Ethan didn’t discuss the claim that the scientist developed a vaccine in the new lab. Did the scientist developed a vaccine in the new lab?",
+    "sentence": "Ethan didn’t discuss the claim that the scientist developed a vaccine in the new lab. Was there a claim that the scientist developed a vaccine in the new lab?",
     "unique_id": 1226,
     "item_type": "negation_test"
   },
@@ -1049,14 +1049,14 @@ const all_stimuli = [
   {
     "lexicalization": 23,
     "polarity": "base",
-    "sentence": "Hannah discussed the claim that the lawyer filed the report too late. Did the lawyer filed the report too late?",
+    "sentence": "Hannah discussed the claim that the lawyer filed the report too late. Was there a claim that the lawyer filed the report too late?",
     "unique_id": 1235,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 23,
     "polarity": "negated",
-    "sentence": "Hannah didn’t discuss the claim that the lawyer filed the report too late. Did the lawyer filed the report too late?",
+    "sentence": "Hannah didn’t discuss the claim that the lawyer filed the report too late. Was there a claim that the lawyer filed the report too late?",
     "unique_id": 1236,
     "item_type": "negation_test"
   },
@@ -1095,14 +1095,14 @@ const all_stimuli = [
   {
     "lexicalization": 24,
     "polarity": "base",
-    "sentence": "Jason discussed the claim that the committee rejected the proposal without review. Did the committee rejected the proposal without review?",
+    "sentence": "Jason discussed the claim that the committee rejected the proposal without review. Was there a claim that the committee rejected the proposal without review?",
     "unique_id": 1245,
     "item_type": "negation_test"
   },
   {
     "lexicalization": 24,
     "polarity": "negated",
-    "sentence": "Jason didn’t discuss the claim that the committee rejected the proposal without review. Did the committee rejected the proposal without review?",
+    "sentence": "Jason didn’t discuss the claim that the committee rejected the proposal without review. Was there a claim that the committee rejected the proposal without review?",
     "unique_id": 1246,
     "item_type": "negation_test"
   },
@@ -1340,13 +1340,13 @@ const all_stimuli = [
   },
   {
     "polarity": "base",
-    "sentence": "The tourists took pictures of the ancient statue. Was there an ancient statue?",
+    "sentence": "Ben took pictures of the ancient statue. Was there an ancient statue?",
     "unique_id": 3007,
     "item_type": "filler_negation_test"
   },
   {
     "polarity": "negated",
-    "sentence": "The tourists didn't take pictures of the ancient statue. Was there an ancient statue?",
+    "sentence": "Ben didn't take pictures of the ancient statue. Was there an ancient statue?",
     "unique_id": 3015,
     "item_type": "filler_negation_test"
   },
@@ -1360,6 +1360,103 @@ const all_stimuli = [
     "polarity": "negated",
     "sentence": "The professor didn't update the lecture slides online. Were there lecture slides online?",
     "unique_id": 3016,
+    "item_type": "filler_negation_test"
+  },
+  
+  {
+    "polarity": "base",
+    "sentence": "The journalist reviewed the important documents in the office. Were there important documents in the office?",
+    "unique_id": 3017,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "The journalist didn't review the important documents in the office. Were there important documents in the office?",
+    "unique_id": 3025,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "The musician tuned the old piano in the practice hall. Was there an old piano in the practice hall?",
+    "unique_id": 3018,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "The musician didn't tune the old piano in the practice hall. Was there an old piano in the practice hall?",
+    "unique_id": 3026,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "The coach reserved the practice field for the team. Was there a practice field for the team?",
+    "unique_id": 3019,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "The coach didn't reserve the practice field for the team. Was there a practice field for the team?",
+    "unique_id": 3027,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "Christine bought the heavy suitcase. Was there a heavy suitcase?",
+    "unique_id": 3020,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "Christine didn't buy the heavy suitcase. Was there a heavy suitcase?",
+    "unique_id": 3028,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "Maria polished the silver jewelry in the display case. Was there silver jewelry in the display case?",
+    "unique_id": 3021,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "Maria didn't polish the silver jewelry in the display case. Was there silver jewelry in the display case?",
+    "unique_id": 3029,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "The assistant labeled the confidential folders in the archive. Were there confidential folders in the archive?",
+    "unique_id": 3022,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "The assistant didn't label the confidential folders in the archive. Were there confidential folders in the archive?",
+    "unique_id": 3030,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "Frank found the missing wallet under the table. Was there a missing wallet under the table?",
+    "unique_id": 3023,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "Frank didn't find the missing wallet under the table. Was there a missing wallet under the table?",
+    "unique_id": 3031,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "base",
+    "sentence": "The clerk sorted the returned packages at the counter. Were there returned packages at the counter?",
+    "unique_id": 3024,
+    "item_type": "filler_negation_test"
+  },
+  {
+    "polarity": "negated",
+    "sentence": "The clerk didn't sort the returned packages at the counter. Were there returned packages at the counter?",
+    "unique_id": 3032,
     "item_type": "filler_negation_test"
   },
 ];
