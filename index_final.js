@@ -56,6 +56,7 @@ const ALL = window.all_stimuli;
 const isCriticalID   = id => id >= 1000 && id < 2000;      // critical acceptability
 const isMainGoodID   = id => id >= 2001 && id <= 2016;     // fillers good
 const isMainBadID    = id => id >= 2017 && id <= 2032;     // fillers bad
+// For negation fillers refer to section 6)
 
 // ========== 4/16/4 split by lexicalization; NT fillers by ID (5/6) ==========
 
@@ -139,7 +140,8 @@ function buildNTCrit(lexList){
 const NT_CRIT_PRE  = buildNTCrit(NT_LEX_PRE);
 const NT_CRIT_POST = buildNTCrit(NT_LEX_POST);
 
-// 6) NT fillers by item_type + polarity, with pair-level exclusivity across pre+post
+
+// 6) NT fillers by item_type + polarity, split into first-8 pairs (pre) and last-8 pairs (post)
 const norm = v => String(v || "").trim().toLowerCase();
 
 // Same question as belonging to the same pair
@@ -154,16 +156,7 @@ function ntPairKey(item){
   return q; // e.g., "was there an ancient statue"
 }
 
-// All NT fillers by polarity
-const NT_FILL_BASE_POOL_ALL = shuffle(
-  ALL.filter(x => norm(x.item_type) === "filler_negation_test" && norm(x.polarity) === "base")
-);
-const NT_FILL_NEG_POOL_ALL  = shuffle(
-  ALL.filter(x => norm(x.item_type) === "filler_negation_test" &&
-                  (norm(x.polarity) === "negated" || norm(x.polarity) === "negation"))
-);
-
-// key
+// helper: take items with distinct question keys
 function takeDistinctByKey(pool, count, usedKeys){
   const out = [];
   for (const it of pool){
@@ -177,19 +170,49 @@ function takeDistinctByKey(pool, count, usedKeys){
   return out;
 }
 
-// pre: 4 base + 4 negated
+// All NT fillers
+const NT_FILLERS_ALL = ALL.filter(
+  x => norm(x.item_type) === "filler_negation_test"
+);
+
+// ----- PRE: use only the first 8 pairs (IDs 3001–3008, 3009–3016) -----
+const NT_FILL_BASE_PRE_POOL = shuffle(
+  NT_FILLERS_ALL.filter(
+    x => norm(x.polarity) === "base" &&
+         x.unique_id >= 3001 && x.unique_id <= 3008
+  )
+);
+
+const NT_FILL_NEG_PRE_POOL = shuffle(
+  NT_FILLERS_ALL.filter(
+    x => (norm(x.polarity) === "negated" || norm(x.polarity) === "negation") &&
+         x.unique_id >= 3009 && x.unique_id <= 3016
+  )
+);
+
 const usedPairKeysPre = new Set();
-const NT_FILL_PRE_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_ALL, 4, usedPairKeysPre);
-const NT_FILL_PRE_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_ALL , 4, usedPairKeysPre);
+const NT_FILL_PRE_BASE = takeDistinctByKey(NT_FILL_BASE_PRE_POOL, 4, usedPairKeysPre);
+const NT_FILL_PRE_NEG  = takeDistinctByKey(NT_FILL_NEG_PRE_POOL,  4, usedPairKeysPre);
 const NT_FILL_PRE      = NT_FILL_PRE_BASE.concat(NT_FILL_PRE_NEG);
 
-// post: 4 base + 4 negated
-const NT_FILL_BASE_POOL_POST = NT_FILL_BASE_POOL_ALL.filter(x => !NT_FILL_PRE_BASE.includes(x));
-const NT_FILL_NEG_POOL_POST  = NT_FILL_NEG_POOL_ALL .filter(x => !NT_FILL_PRE_NEG .includes(x));
+// ----- POST: use only the last 8 pairs (IDs 3017–3024, 3025–3032) -----
+const NT_FILL_BASE_POST_POOL = shuffle(
+  NT_FILLERS_ALL.filter(
+    x => norm(x.polarity) === "base" &&
+         x.unique_id >= 3017 && x.unique_id <= 3024
+  )
+);
+
+const NT_FILL_NEG_POST_POOL = shuffle(
+  NT_FILLERS_ALL.filter(
+    x => (norm(x.polarity) === "negated" || norm(x.polarity) === "negation") &&
+         x.unique_id >= 3025 && x.unique_id <= 3032
+  )
+);
 
 const usedPairKeysPost = new Set();
-const NT_FILL_POST_BASE = takeDistinctByKey(NT_FILL_BASE_POOL_POST, 4, usedPairKeysPost);
-const NT_FILL_POST_NEG  = takeDistinctByKey(NT_FILL_NEG_POOL_POST , 4, usedPairKeysPost);
+const NT_FILL_POST_BASE = takeDistinctByKey(NT_FILL_BASE_POST_POOL, 4, usedPairKeysPost);
+const NT_FILL_POST_NEG  = takeDistinctByKey(NT_FILL_NEG_POST_POOL,  4, usedPairKeysPost);
 const NT_FILL_POST      = NT_FILL_POST_BASE.concat(NT_FILL_POST_NEG);
 
 
@@ -593,6 +616,7 @@ slides.negation_test_pre = slide({
         order      : order++,
         is_filler  : isFiller ? 1 : 0,
         polarity   : this.stim.polarity || null,
+        lexicalization: this.stim.lexicalization || null, 
         response   : null,
         sentence   : parts.sentence,
         sentence_id: this.stim.unique_id
@@ -641,6 +665,7 @@ slides.negation_test_pre = slide({
       order      : order++,
       is_filler  : isFiller ? 1 : 0,
       polarity   : this.stim.polarity || null,
+      lexicalization: this.stim.lexicalization || null, 
       response   : val,
       sentence   : parts2.sentence,
       question   : parts2.question,
@@ -710,6 +735,7 @@ slides.negation_test_post = slide({
         order      : order++,
         is_filler  : isFiller ? 1 : 0,
         polarity   : this.stim.polarity || null,
+        lexicalization: this.stim.lexicalization || null, 
         response   : null,                 // no response on read page
         sentence   : parts.sentence,
         sentence_id: this.stim.unique_id
@@ -758,6 +784,7 @@ slides.negation_test_post = slide({
       order      : order++,
       is_filler  : isFiller ? 1 : 0,
       polarity   : this.stim.polarity || null,
+      lexicalization: this.stim.lexicalization || null, 
       response   : val,
       sentence   : parts2.sentence,
       question   : parts2.question,
@@ -843,7 +870,7 @@ function init() {
   exp.trial_index = 0; // number of COMPLETED trials so far
   
   //blocks of the experiment:
-  exp.structure=[ "i0", "consent", "instructions", "practice_slider", "post_practice_1", "practice_slider_bad", "post_practice_2", "negation_practice", "last_reminder", 'negation_test_pre', 'one_slider', 'negation_test_post', 'subj_info', 'thanks'];
+  exp.structure=["i0", "consent", "instructions", "practice_slider", "post_practice_1", "practice_slider_bad", "post_practice_2", "negation_practice", "last_reminder", 'negation_test_pre', 'one_slider', 'negation_test_post', 'subj_info', 'thanks'];
 
   exp.data_trials = [];
   //make corresponding slides:
